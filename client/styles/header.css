@@ -1,3 +1,7 @@
+.nav-bar ul{
+    padding-right: 40px;
+}
+
 .nav-item textArea{
     display: block;
     margin: auto;

@@ -1,5 +1,5 @@
 const stateData = {
-    todos: [
+    posts: [
         {
             id: "3315e1p5-3abl-0p523-30e4-8001l8yf3036",
             author: "Cody",
@@ -22,7 +22,7 @@ const stateData = {
 }
 
 const emptyData = {
-    todos: []
+    posts: []
 }
 
-export default stateData
+export default emptyData

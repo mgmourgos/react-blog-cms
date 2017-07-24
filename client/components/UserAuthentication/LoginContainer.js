@@ -17,20 +17,3 @@ export const LoginContainer = connect(
         }
     })
 )(LoginScreen)
-
-const RegisterScreen = () => {
-    return(
-        <div className="login">
-            Register here
-        </div>
-    )
-}
-
-export const RegisterContainer = connect(
-    null,
-    dispatch => ({
-        onNewAccount(username, password, email) {
-            //dispatch(addPost(title, content))
-        }
-    })
-)(RegisterScreen)

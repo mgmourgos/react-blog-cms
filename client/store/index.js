@@ -1,7 +1,7 @@
 import { createStore,
          combineReducers,
          applyMiddleware } from 'redux'
-import { todos } from './reducers'
+import { posts } from './postReducers'
 import stateData from './initialState'
 import thunk from 'redux-thunk'
 
@@ -23,11 +23,12 @@ const saver = store => next => action => {
 
 const storeFactory = (initialState=stateData) =>
     createStore(
-        combineReducers({todos}),
-        ((localStorage['redux-store']) ?
-            JSON.parse(localStorage['redux-store']) :
-            stateData
-        ),
+        combineReducers({posts}),
+        // ((localStorage['redux-store']) ?
+        //     JSON.parse(localStorage['redux-store']) :
+        //     stateData
+        // ),
+        stateData,
         applyMiddleware(thunk, logger, saver)
     )
 

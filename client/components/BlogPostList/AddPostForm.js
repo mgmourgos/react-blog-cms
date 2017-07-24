@@ -1,25 +1,18 @@
-import { PropTypes, Component } from 'react'
+import { Component } from 'react'
 
 class AddPostForm extends Component {
-
-    constructor(props) {
-        super(props)
-        //this.state = props.history
-    }
 
     render () {
         let title = ''
         let content = ''
-        const {store} = this.context
-        const state = store.getState()
         return (
-            <div className="todo-add-form">
+            <div className="post-add-form">
                 <form onSubmit={ e =>{
                         e.preventDefault()
                         this.props.onAdd(title.value, content.value)
                         title.value = ''
                         content.value = ''
-                        this.props.history.push('/form-complete')
+                        this.props.history.push('/')
                     }}>
                     <input      placeholder="Add title here..."
                                 ref={input=>title=input}>
@@ -33,10 +26,6 @@ class AddPostForm extends Component {
             </div>
         )
     }
-}
-
-AddPostForm.contextTypes = {
-    store: PropTypes.object
 }
 
 export default AddPostForm

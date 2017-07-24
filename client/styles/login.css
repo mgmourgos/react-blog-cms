@@ -1,6 +1,29 @@
 
-.login {
+.register {
     margin:auto;
     color: black;
-    width: 500px;
+    width: 100%;
+}
+
+.register input{
+    width: 200px;
+    display: block;
+    height:25px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+.register button{
+    width: 215px;
+    display: block;
+    margin:auto;
+    margin-top: 20px;
+}
+
+.register div{
+    margin:auto;
+    width: 215px;
 }

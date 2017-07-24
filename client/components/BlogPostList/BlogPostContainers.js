@@ -14,7 +14,7 @@ export const AddPostContainer = connect(
 
 export const PostListContainer = connect(
     state => ({
-        todos: state.todos
+        posts: state.posts
     }),
     dispatch => ({
         onRemove(id) {

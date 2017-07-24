@@ -26,27 +26,26 @@ class ShowPostList extends Component {
     render() {
         const { store } = this.context
         const state = store.getState()
-
         return (
             <div>
-                {state.todos.map((todo,i) => {
-                    if(todo.id === this.state.editing) {
+                {state.posts.map((post,i) => {
+                    if(post.id === this.state.editing) {
                         return (
                         <EditPostItem
                             key={i}
-                            title={todo.title}
-                            content={todo.content}
-                            onRemove={()=>this.props.onRemove(todo.id)}
-                            onEdit={(new_title, new_content)=>this.editItem(new_title, new_content, todo.id)}>
+                            title={post.title}
+                            content={post.content}
+                            onRemove={()=>this.props.onRemove(post.id)}
+                            onEdit={(new_title, new_content)=>this.editItem(new_title, new_content, post.id)}>
                         </EditPostItem> )
                     } else {
                         return (
                         <ShowPostItem
                             key={i}
-                            title={todo.title}
-                            content={todo.content}
-                            onRemove={()=>this.props.onRemove(todo.id)}
-                            onEdit={()=>this.setEditingItem(todo.id)}>
+                            title={post.title}
+                            content={post.content}
+                            onRemove={()=>this.props.onRemove(post.id)}
+                            onEdit={()=>this.setEditingItem(post.id)}>
                         </ShowPostItem> )
                     }
                 })}

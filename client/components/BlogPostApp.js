@@ -1,5 +1,6 @@
 import { PostListContainer, AddPostContainer } from './BlogPostList/BlogPostContainers'
-import { LoginContainer, RegisterContainer } from './UserAuthentication/LoginContainer'
+import { LoginContainer } from './UserAuthentication/LoginContainer'
+import { RegisterContainer } from './UserAuthentication/RegisterContainer'
 import { Switch, Route } from 'react-router-dom'
 
 const BlogPostApp = () =>
