@@ -1,0 +1,35 @@
+.nav-item textArea{
+    display: block;
+    margin: auto;
+    width:90%;
+    height:400px;
+}
+
+.activeLink{
+    background: rgb(0, 153, 204);
+}
+
+.nav-item {
+    display: inline;
+}
+
+.nav-item-right {
+    float:right;
+}
+
+.nav-item a:hover {
+    background: rgb(0, 153, 204);
+}
+
+a{
+    background: rgb(51, 102, 153);
+    margin: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 30px;
+    text-decoration:none;
+    color: white;
+}
