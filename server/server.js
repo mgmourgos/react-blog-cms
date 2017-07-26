@@ -1,6 +1,5 @@
 const express = require('express'),
       path = require('path')
-// const fs = require('fs');
 
 //loads MONGOLAB_URI into process.env read from file .env
 require('dotenv').config()
@@ -24,6 +23,7 @@ const logger = (req, res, next) => {
     next()
 }
 
+app.use('/assets', express.static(path.join(__dirname, '../build')))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(logger)
@@ -33,9 +33,10 @@ const finishCall = (res) => {
     res.send('received register api call')
 }
 
+//Placeholder for future registation api call
 app.post('/register', (req, res) => {
     console.log(req.body)
-    setTimeout( () => finishCall(res), 3000);
+    setTimeout( () => finishCall(res), 3000)
 
 })
 
@@ -43,8 +44,8 @@ app.get('/*', (req, res) => {
     sendHTMLpage(req, res)
 })
 
-app.listen(process.env.PORT || 3000, function () {
-    console.log('Example app listening on port ' + (process.env.PORT || 3000))
+app.listen(process.env.PORT || 3001, function () {
+    console.log('Example app listening on port ' + (process.env.PORT || 3001))
 })
 
 module.exports = app

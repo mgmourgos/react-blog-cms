@@ -1,29 +1,47 @@
 
 .register {
+    width:430px;
     margin:auto;
     color: black;
-    width: 100%;
 }
 
 .register input{
-    width: 200px;
-    display: block;
+    margin-top:10px;
+    margin-right:10px;
+
     height:25px;
-    margin: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
     padding: 5px;
     padding-left: 10px;
 }
 
 .register button{
-    width: 215px;
-    display: block;
-    margin:auto;
-    margin-top: 20px;
+    height:37px;
+    width: 189px;
+    margin-top: 10px;
+    color: white;
 }
 
-.register div{
-    margin:auto;
-    width: 215px;
+.valid-button{
+    background: rgb(51, 102, 153);
+}
+.valid-button:hover{
+    background: rgb(0, 153, 204);
+}
+
+.invalid-button{
+    background: grey;
+}
+.invalid-button:hover{
+    background: grey;
+}
+
+.form-error {
+    display: inline;
+
+    background-color: rgb(255, 179, 179);
+    border: 1px solid Red;
+    border-radius: 4px;
+
+    padding-left: 10px;
+    padding-right: 10px;
 }

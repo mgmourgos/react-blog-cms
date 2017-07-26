@@ -9,4 +9,14 @@ const postSchema = new mongoose.Schema({
 
 const Post = mongoose.model('Post', postSchema)
 
-module.exports = Post
+const userSchema = new mongoose.Schema({
+    username: String,
+    password: String
+})
+
+const User = mongoose.model('User', userSchema)
+
+module.exports = {
+    Post: Post,
+    User: User
+}

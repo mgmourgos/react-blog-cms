@@ -2,25 +2,25 @@ var express = require('express')
 var router = express.Router()
 const uuid = require('uuid')
 const mongoose = require('mongoose'),
-      Post = require('./db.js')
+      models = require('./db.js')
 //Routes for '/api/'
 
 router.post('/posts', function (req, res) {
-    var newPost = new Post({
+    var newPost = new models.Post({
         id: uuid.v4(),
         title: req.body.title,
         content: req.body.content
     })
 
     newPost.save(function (err, newPost) {
-        if (err) return console.error(err);
+        if (err) return console.error(err)
         res.send('Posted Blog Post: ' + req.body.title)
     })
 })
 
 router.get('/posts', function (req, res) {
 
-    Post.find({}, {'title': 1, 'content':1, 'id': 1, '_id':0},function (err, allPosts) {
+    models.Post.find({}, {'title': 1, 'content':1, 'id': 1, '_id':0},function (err, allPosts) {
         if (err) return console.error(err)
         res.send(allPosts)
     })
@@ -28,7 +28,7 @@ router.get('/posts', function (req, res) {
 
 router.delete('/posts/:id', function (req, res) {
 
-    Post.find({id: req.params.id}).remove(function (err, obj) {
+    models.Post.find({id: req.params.id}).remove(function (err, obj) {
         if (err) return console.error(err)
         else {
             if (obj.result.n === 0) {
@@ -42,11 +42,11 @@ router.delete('/posts/:id', function (req, res) {
 
 router.put('/posts/:id', function (req, res) {
 
-    Post.update({id: req.params.id},    //condition
+    models.Post.update({id: req.params.id},    //condition
                 {title: req.body.title,
                  content: req.body.content},//info updated
                 function (err, obj) {
-        if (err) return console.error(err);
+        if (err) return console.error(err)
         else {
             if (obj.n === 0) {
                 res.send('id not found')
@@ -55,6 +55,20 @@ router.put('/posts/:id', function (req, res) {
             }
         }
     })
+})
+
+router.get('/isUser/:username', function (req, res) {
+
+    models.User.findOne({username: req.params.username}, function (err, obj) {
+            if (err) return console.error(err)
+            if (obj) {
+                res.send({errors: {username: "username taken"}})
+
+            } else {
+                res.send({ })
+            }
+    })
+
 })
 
 module.exports = router
