@@ -18,11 +18,19 @@ const stateData = {
             title: "Title 3",
             content: "Content 3"
         }
-    ]
+    ],
+    auth: {
+        isLoggedIn: false,
+        username: ''
+    }
 }
 
 const emptyData = {
-    posts: []
+    posts: [],
+    auth: {
+        isLoggedIn: false,
+        username: ''
+    }
 }
 
 export default emptyData

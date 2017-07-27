@@ -6,8 +6,8 @@ import RegisterUserValidationForm from './RegisterUserValidationForm'
 export const RegisterContainer = connect(
     null,
     dispatch => ({
-        onSubmit(username, password) {
-            return dispatch(registerUser(username, password))
+        onSubmit(values) {
+            return console.log(dispatch(registerUser(values)))
         }
     })
 )(RegisterUserValidationForm)

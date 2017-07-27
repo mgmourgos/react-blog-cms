@@ -2,7 +2,7 @@ var express = require('express')
 var router = express.Router()
 const uuid = require('uuid')
 const mongoose = require('mongoose'),
-      models = require('./db.js')
+      models = require('../db.js')
 //Routes for '/api/'
 
 router.post('/posts', function (req, res) {
@@ -55,20 +55,6 @@ router.put('/posts/:id', function (req, res) {
             }
         }
     })
-})
-
-router.get('/isUser/:username', function (req, res) {
-
-    models.User.findOne({username: req.params.username}, function (err, obj) {
-            if (err) return console.error(err)
-            if (obj) {
-                res.send({errors: {username: "username taken"}})
-
-            } else {
-                res.send({ })
-            }
-    })
-
 })
 
 module.exports = router

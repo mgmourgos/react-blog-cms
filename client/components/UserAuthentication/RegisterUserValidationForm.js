@@ -65,7 +65,7 @@ const validate = values => {
 }
 
 const asyncValidate = ( values, dispatch ) => {
-    return fetch('/api/isUser/' + values.username)
+    return fetch('/api/users/' + values.username)
     .then(response => response.json())
     .then(response => {
             if (response.errors) {

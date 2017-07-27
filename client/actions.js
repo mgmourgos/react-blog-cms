@@ -1,6 +1,8 @@
 import C from './constants.js'
 import { v4 } from 'uuid'
 import fetch from 'isomorphic-fetch'
+import { browserHistory } from 'react-router'
+
 
 export const addPostPreFetch = (title, content) => ({
         type: C.ADD_POST,
@@ -97,17 +99,68 @@ export const setPosts = (posts) => ({
     posts: posts
 })
 
+export const setLogin = (username) => ({
+    type: C.LOGIN,
+    username: username
+})
+
+export const setLogout = () => ({
+    type: C.LOGOUT
+})
+
 //A thunk which will attempt to register a new user
-export const registerUser = (username, password) => {
+//If successful, client is logged in
+export const registerUser = (values) => {
     return dispatch => {
-        return fetch('/register', {
+        return fetch('/api/register', {
             method: 'POST',
-            body: JSON.stringify({ username: username, psd: password}),
+            body: JSON.stringify({ username: values.username, password: values.password1}),
             headers: { "Content-Type": "application/json" }
         })
         .then(
-            response => response,
+            response => response.json(),
             error => console.log('An error occured.', error)
+        )
+        .then(
+            json => dispatch(setLogin(json.username))
         )
     }
 }
+
+export const logout = () => {
+    return dispatch => {
+        return fetch('/api/logout')
+            .then(
+                response => dispatch(setLogout()),
+                error => console.log('An error occured', error)
+            )
+    }
+}
+
+export const login = (username, password) => {
+    return dispatch => {
+        return fetch('/api/login', {
+            method: 'POST',
+            body: JSON.stringify({ username: username, password: password}),
+            headers: { "Content-Type": "application/json" }
+        })
+        .then(
+            response => response.json(),
+            error => console.log('An error occured.', error)
+        )
+        .then(
+            json => {
+                dispatch(setLogin(json.username))
+            }
+        )
+    }
+}
+
+// export const isLoggedIn = () => {
+//     return dispatch => {
+//         return fetch('/api/login')
+//             .then(
+//                 response
+//             )
+//     }
+// }

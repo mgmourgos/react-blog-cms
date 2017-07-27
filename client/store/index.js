@@ -3,6 +3,7 @@ import { createStore,
          applyMiddleware } from 'redux'
 
 import { posts } from './postReducers'
+import { auth } from './authReducers'
 import { reducer as formReducer } from 'redux-form'
 
 import stateData from './initialState'
@@ -26,7 +27,7 @@ const saver = store => next => action => {
 
 const storeFactory = (initialState=stateData) =>
     createStore(
-        combineReducers({posts, form:formReducer}),
+        combineReducers({posts, auth, form:formReducer}),
         ((localStorage['redux-store']) ?
             JSON.parse(localStorage['redux-store']) :
             stateData
