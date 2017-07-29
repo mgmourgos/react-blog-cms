@@ -42,7 +42,6 @@ export const removePost = (id) => {
 
         //Perform expected result of the DELETE API request
         dispatch(removePostPreFetch(id))
-
         //API call to delete post {id}
         return fetch('/api/posts/' + id, {
             method: 'DELETE'
@@ -69,14 +68,14 @@ export const editPost = (id, title, content) => {
 
         //API call to edit post {id}, with new title: {title}
         return fetch('/api/posts/' + id, {
-                method: 'PUT',
-                body: JSON.stringify({ title: title, id: id, content: content}),
-                headers: { "Content-Type": "application/json" }
-            })
-            .then(
-                response => dispatch(fetchPosts()),
-                error => console.log('An error occured.', error)
-            )
+            method: 'PUT',
+            body: JSON.stringify({ title: title, id: id, content: content}),
+            headers: { "Content-Type": "application/json" }
+        })
+        .then(
+            response => dispatch(fetchPosts()),
+            error => console.log('An error occured.', error)
+        )
     }
 }
 
@@ -84,13 +83,13 @@ export const editPost = (id, title, content) => {
 export const fetchPosts = () => {
     return dispatch => {
         return fetch('/api/posts')
-            .then(
-                response => response.json(),
-                error => console.log('An error occured.', error)
-            )
-            .then(
-                json => dispatch(setPosts(json))
-            )
+        .then(
+            response => response.json(),
+            error => console.log('An error occured.', error)
+        )
+        .then(
+            json => dispatch(setPosts(json))
+        )
     }
 }
 
@@ -129,11 +128,13 @@ export const registerUser = (values) => {
 
 export const logout = () => {
     return dispatch => {
-        return fetch('/api/logout')
-            .then(
-                response => dispatch(setLogout()),
-                error => console.log('An error occured', error)
-            )
+        return fetch('/api/logout', {
+            credentials: 'same-origin'
+        })
+        .then(
+            response => dispatch(setLogout()),
+            error => console.log('An error occured', error)
+        )
     }
 }
 
@@ -142,10 +143,13 @@ export const login = (username, password) => {
         return fetch('/api/login', {
             method: 'POST',
             body: JSON.stringify({ username: username, password: password}),
-            headers: { "Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json" },
+            credentials: 'same-origin'
         })
         .then(
-            response => response.json(),
+            response => {
+                return response.json()
+            },
             error => console.log('An error occured.', error)
         )
         .then(
@@ -156,11 +160,22 @@ export const login = (username, password) => {
     }
 }
 
-// export const isLoggedIn = () => {
-//     return dispatch => {
-//         return fetch('/api/login')
-//             .then(
-//                 response
-//             )
-//     }
-// }
+export const checkAuth = (status, username) => ({
+    type: C.LOG_CHECK,
+    username: status
+})
+
+export const isLoggedIn = () => {
+    return dispatch => {
+        return fetch('/api/login', {
+            credentials: 'same-origin'
+        })
+        .then(
+            response => response.json(),
+            error => console.log('An error occured.', error)
+        )
+        .then(
+            json => dispatch(checkAuth(json.status, json.username))
+        )
+    }
+}

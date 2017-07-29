@@ -24,7 +24,7 @@ router.post('/register', function(req, res) {
   })
 })
 
-//check if logged in, if so returns username
+//check if logged in, if so returns username and status
 router.get('/login', function(req, res) {
     if(req.isAuthenticated()) {
         res.send({
@@ -49,6 +49,7 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
 //logs out if client was logged in
 router.get('/logout', function(req, res) {
     req.logout()
+    req.session.destroy()//removes session upon logout
     res.send({status: 'logged out'})
 })
 

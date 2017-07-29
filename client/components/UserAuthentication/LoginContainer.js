@@ -11,7 +11,7 @@ class LoginScreen extends Component {
             <div className="register">
                 <form onSubmit={ e =>{
                         e.preventDefault()
-                        console.log(this.props.onLogin(username.value, password.value))
+                        this.props.onLogin(username.value, password.value)
                         username.value = ''
                         password.value = ''
                         // this.props.history.push('/')
@@ -34,7 +34,6 @@ export const LoginContainer = connect(
     null,
     dispatch => ({
         onLogin(username, password) {
-            console.log(username,password)
             dispatch(login(username, password))
         }
     })

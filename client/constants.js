@@ -4,7 +4,8 @@ const constants = {
     EDIT_POST: "EDIT_POST",
     SET_POSTS: "SET_POSTS",
     LOGIN: "LOGIN",
-    LOGOUT: "LOOGOUT"
+    LOGOUT: "LOGOUT",
+    LOG_CHECK: "LOG_CHECK"
 }
 
 export default constants

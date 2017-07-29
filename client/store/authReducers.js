@@ -12,6 +12,11 @@ export const auth = (state={}, action) => {
                 isLoggedIn: false,
                 username: ''
             }
+        case C.LOG_CHECK:
+            return {
+                ...state,
+                username: action.username
+            }
         default :
             return state
     }
