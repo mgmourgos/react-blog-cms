@@ -1,15 +1,15 @@
-import C from '../constants.js'
+import C from '../../constants.js'
 
 export const posts = (state={}, action) => {
     switch (action.type) {
-        // case C.ADD_POST:
-        //     return [
-        //         ...state,
-        //         {
-        //             id: action.id,
-        //             title: action.title
-        //         }
-        //     ]
+        case C.ADD_POST:
+            return [
+                ...state,
+                {
+                    title: action.title,
+                    content: action.content
+                }
+            ]
         case C.REMOVE_POST:
             return state.filter(
                 c => c.id !== action.id

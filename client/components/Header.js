@@ -1,39 +1,28 @@
-import { NavLink } from 'react-router-dom'
-import headerStyles from '../styles/header.css'
-import ShowLogin from './UserAuthentication/ShowLogin'
-import CheckLogin from './UserAuthentication/CheckLogin'
+import { connect } from 'react-redux'
+import { Component } from 'react'
+import LoggedOutBar from './NavBar/LoggedOutBar'
+import LoggedInBar from './NavBar/LoggedInBar'
 
+class Header extends Component {
+    render() {
+        if (this.props.isLoggedIn)
+            return(<LoggedInBar />)
+        else
+            return(<LoggedOutBar />)
+    }
+}
 
-const Header = () =>
-    <div className="nav-bar">
-        <ul>
-            <li className="nav-item">
-                <NavLink exact activeClassName="activeLink" to='/'>
-                    Home
-                </NavLink>
-            </li>
-            <li className="nav-item">
-                <NavLink exact activeClassName="activeLink" to='/addpost'>
-                    Add Post
-                </NavLink>
-            </li>
-            <li className="nav-item nav-item-right">
-            <NavLink exact activeClassName="activeLink" to='/register'>
-                Register
-            </NavLink>
-            </li>
-            <li className="nav-item nav-item-right">
-            <NavLink exact activeClassName="activeLink" to='/login'>
-                Login
-            </NavLink>
-            </li>
-            <li className="nav-item nav-item-right">
-                <ShowLogin />
-            </li>
-            <li className="nav-item nav-item-right">
-                <CheckLogin />
-            </li>
-        </ul>
-    </div>
+const HeaderContainer = connect(
+    state => ({
+        isLoggedIn: state.auth.isLoggedIn
+    }),
+    dispatch => ({
+        onLogout() {
+            dispatch(logout())
+        }
+    }),
+    null,
+    { pure: false } //Allows activeClassName for NavLinks to update
+)(Header)
 
-export default Header
+export default HeaderContainer

@@ -14,7 +14,7 @@ class LoginScreen extends Component {
                         this.props.onLogin(username.value, password.value)
                         username.value = ''
                         password.value = ''
-                        // this.props.history.push('/')
+                        this.props.history.push('/')
                     }}>
                     <div><input      placeholder="Username"
                                 ref={input=>username=input}>

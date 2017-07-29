@@ -1,4 +1,4 @@
-import C from '../constants.js'
+import C from '../../constants.js'
 
 export const auth = (state={}, action) => {
     switch(action.type) {

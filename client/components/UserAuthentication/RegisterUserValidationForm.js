@@ -25,7 +25,7 @@ class RegisterUserForm extends Component {
                                 type = "password">
                     </Field>
                     <Field      label = "Re-Enter Password"
-                                placeholder = "Password"
+                                placeholder = "Re-Enter Password"
                                 name = "password2"
                                 component = {renderField}
                                 type = "password">

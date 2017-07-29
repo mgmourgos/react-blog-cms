@@ -26,6 +26,7 @@
 }
 
 .nav-button, a{
+    cursor: pointer;
     background: rgb(51, 102, 153);
     margin: 5px;
     padding: 5px;

@@ -114,7 +114,8 @@ export const registerUser = (values) => {
         return fetch('/api/register', {
             method: 'POST',
             body: JSON.stringify({ username: values.username, password: values.password1}),
-            headers: { "Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json" },
+            credentials: 'same-origin'
         })
         .then(
             response => response.json(),

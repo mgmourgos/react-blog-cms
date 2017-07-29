@@ -1,11 +1,9 @@
 import { createStore,
          combineReducers,
          applyMiddleware } from 'redux'
-
-import { posts } from './postReducers'
-import { auth } from './authReducers'
+import { posts } from './reducers/postReducers'
+import { auth } from './reducers/authReducers'
 import { reducer as formReducer } from 'redux-form'
-
 import stateData from './initialState'
 import thunk from 'redux-thunk'
 
