@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom'
-import LogoutButton from './../UserAuthentication/LogoutButton'
 import { Component } from 'react'
 import headerStyles from '../../styles/header.css'
+import { connect } from 'react-redux'
+import { logout } from '../../actions'
 
 class LoggedInBar extends Component {
     render() {
@@ -18,8 +19,13 @@ class LoggedInBar extends Component {
                         Add Post
                     </NavLink>
                 </li>
-                <li className="nav-item nav-item-right">
-                    <LogoutButton />
+                <li className="nav-item-right">
+                    <a className="nav-button" onClick={this.props.onLogout}>
+                        Logout
+                    </a>
+                </li>
+                <li className=" nav-item-right">
+                    <div className="nav-text">Welcome, {this.props.auth.username}!</div>
                 </li>
             </ul>
         </div>
@@ -27,4 +33,15 @@ class LoggedInBar extends Component {
     }
 }
 
-export default LoggedInBar
+const LoggedInBarContainer = connect(
+    state => ({
+        auth: state.auth
+    }),
+    dispatch => ({
+        onLogout() {
+            dispatch(logout())
+        }
+    })
+)(LoggedInBar)
+
+export default LoggedInBarContainer

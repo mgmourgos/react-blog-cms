@@ -2,17 +2,18 @@ import { connect } from 'react-redux'
 import { Component } from 'react'
 import LoggedOutBar from './NavBar/LoggedOutBar'
 import LoggedInBar from './NavBar/LoggedInBar'
+import { withRouter } from 'react-router'
 
 class Header extends Component {
     render() {
         if (this.props.isLoggedIn)
-            return(<LoggedInBar />)
+            return(<LoggedInBar curPath={this.props.location.pathname} />)
         else
             return(<LoggedOutBar />)
     }
 }
 
-const HeaderContainer = connect(
+const HeaderContainer = withRouter(connect(
     state => ({
         isLoggedIn: state.auth.isLoggedIn
     }),
@@ -20,9 +21,7 @@ const HeaderContainer = connect(
         onLogout() {
             dispatch(logout())
         }
-    }),
-    null,
-    { pure: false } //Allows activeClassName for NavLinks to update
-)(Header)
+    })
+)(Header) )
 
 export default HeaderContainer

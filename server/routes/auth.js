@@ -8,7 +8,6 @@ const mongoose = require('mongoose'),
 router.post('/register', function(req, res) {
   User.register(new User({ username : req.body.username }), req.body.password, function(err, user) {
     if (err) {
-        // return res.render('register', { user : user })
         res.send({
             status: err.name,
             message: err.message

@@ -6,6 +6,7 @@ import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Component } from 'react'
 import { Redirect } from 'react-router'
+import { withRouter } from 'react-router'
 // const BlogPostApp = () =>
 //     <div>
 //         <Switch>
@@ -19,19 +20,19 @@ class BlogPostApp extends Component {
     render() {
         if (this.props.isLoggedIn) {
             return (
-                <div>
+                <div className="blog-body">
                     <Switch>
                         <Redirect from='/login' to='/'/>
                         <Redirect from='/register' to='/'/>
                         <Route exact path='/addpost' component={AddPostContainer}/>
                         <Route exact path='/' component={PostListContainer}/>
-                        <Redirect from='*' to='/'/>//redirect any non-existant routes to '/'
+                        <Redirect from='/*' to='/'/>//redirect any non-existant routes to '/'
                     </Switch>
                 </div>
             )
         } else {
             return (
-                <div>
+                <div className="blog-body">
                     <Switch>
                         <Route exact path='/register' component={RegisterContainer}/>
                         <Route exact path='/login' component={LoginContainer}/>
@@ -45,14 +46,10 @@ class BlogPostApp extends Component {
     }
 }
 
-
-    const BlogPostAppContainer = connect(
-        state => ({
-            isLoggedIn: state.auth.isLoggedIn
-        }),
-        null,
-        null,
-        { pure: false } //Allows activeClassName for NavLinks to update
-    )(BlogPostApp)
+const BlogPostAppContainer = withRouter(connect(
+    state => ({
+        isLoggedIn: state.auth.isLoggedIn
+    })
+)(BlogPostApp))
 
 export default BlogPostAppContainer

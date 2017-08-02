@@ -21,7 +21,8 @@ export const addPost = (title, content) => {
         return fetch('/api/posts', {
             method: 'POST',
             body: JSON.stringify({ title: title, content: content}),
-            headers: { "Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json" },
+            credentials: 'same-origin'
         })
         .then(
             response => response,
@@ -44,7 +45,8 @@ export const removePost = (id) => {
         dispatch(removePostPreFetch(id))
         //API call to delete post {id}
         return fetch('/api/posts/' + id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            credentials: 'same-origin'
         })
         .then(
             response => dispatch(fetchPosts()),
@@ -70,7 +72,8 @@ export const editPost = (id, title, content) => {
         return fetch('/api/posts/' + id, {
             method: 'PUT',
             body: JSON.stringify({ title: title, id: id, content: content}),
-            headers: { "Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json" },
+            credentials: 'same-origin'
         })
         .then(
             response => dispatch(fetchPosts()),

@@ -5,7 +5,8 @@ const postSchema = new mongoose.Schema({
     id: String,
     title: String,
     author: String,
-    content: String
+    content: String,
+    date: Date
 })
 
 const Post = mongoose.model('Post', postSchema)
