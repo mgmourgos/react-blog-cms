@@ -4,7 +4,7 @@ body {
     font-family: 'Abel', serif;
     font-size:20px;
     background: whitesmoke;
-    color: white;
+    /*color: white;*/
 }
 html, body
 {
@@ -26,6 +26,9 @@ textarea{
 }
 
 .blog-body{
+    max-width: 900px;
+    margin: auto;
+    white-space: pre-wrap;
     margin-top: 10px;
 }
 
@@ -41,23 +44,23 @@ textarea{
 }
 
 .post-edit-btn.start {
-    color:white;
+    cursor: pointer;
 }
 
 .post-rm-btn {
-    color: white;
+    cursor: pointer;
     float: right;
 }
 
 .post-item {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 40px;
+    margin-bottom: 70px;
     margin-left: 30px;
     margin-right: 30px;
     padding: 10px;
-    background: gray;
+    /*background: gray;*/
     display: block;
-    border-radius: 3px;
+    /*border-radius: 3px;*/
     box-sizing: border-box;
 }
 
@@ -70,7 +73,21 @@ textarea{
 }
 
 .post-title {
-    font-size:30px;
+    font-size:60px;
     margin: auto;
-    display: inline;
+    text-align: center;
+}
+.post-title-link {
+    color: black;
+    text-decoration: none;
+}
+.post-title-link:hover {
+    color: #1abc9c;
+    transition: ease .4s;
+    text-decoration: none;
+}
+.post-info {
+    opacity: .6;
+    text-align: center;
+    margin-bottom: 35px;
 }

@@ -6,17 +6,17 @@ const LoggedOutBar = () =>
         <div className="nav-bar">
             <ul>
                 <li className="nav-item">
-                    <NavLink exact activeClassName="activeLink" to='/'>
+                    <NavLink exact className="nav-link" activeClassName="activeLink" to='/'>
                         Home
                     </NavLink>
                 </li>
                 <li className="nav-item nav-item-right">
-                    <NavLink exact activeClassName="activeLink" to='/login'>
+                    <NavLink exact className="nav-link" activeClassName="activeLink" to='/login'>
                         Login
                     </NavLink>
                 </li>
                 <li className="nav-item nav-item-right">
-                    <NavLink exact activeClassName="activeLink" to='/register'>
+                    <NavLink exact className="nav-link" activeClassName="activeLink" to='/register'>
                         Register
                     </NavLink>
                 </li>

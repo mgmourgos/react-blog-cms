@@ -10,12 +10,12 @@ class LoggedInBar extends Component {
         <div className="nav-bar">
             <ul>
                 <li className="nav-item">
-                    <NavLink exact activeClassName="activeLink" to='/'>
+                    <NavLink exact className="nav-link" activeClassName="activeLink" to='/'>
                         Home
                     </NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink exact activeClassName="activeLink" to='/addpost'>
+                    <NavLink exact className="nav-link" activeClassName="activeLink" to='/addpost'>
                         Add Post
                     </NavLink>
                 </li>

@@ -26,14 +26,20 @@ class ShowPostList extends Component {
     render() {
         const { store } = this.context
         const state = store.getState()
+
         return (
             <div>
                 {state.posts.map((post,i) => {
+                    var date = (new Date(post.date)).toLocaleDateString()
                     if(post.id === this.state.editing) {
+
                         return (
                         <EditPostItem
                             key={i}
+                            id = {post.id}
                             title={post.title}
+                            author={post.author}
+                            date={post.date}
                             content={post.content}
                             onRemove={()=>this.props.onRemove(post.id)}
                             onEdit={(new_title, new_content)=>this.editItem(new_title, new_content, post.id)}>
@@ -42,7 +48,10 @@ class ShowPostList extends Component {
                         return (
                         <ShowPostItem
                             key={i}
+                            id = {post.id}
                             title={post.title}
+                            author={post.author}
+                            date={date}
                             content={post.content}
                             onRemove={()=>this.props.onRemove(post.id)}
                             onEdit={()=>this.setEditingItem(post.id)}>

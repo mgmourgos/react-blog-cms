@@ -7,9 +7,15 @@ import { withRouter } from 'react-router'
 class Header extends Component {
     render() {
         if (this.props.isLoggedIn)
-            return(<LoggedInBar curPath={this.props.location.pathname} />)
+            return(
+                <div className="nav-bar-container">
+                    <LoggedInBar curPath={this.props.location.pathname} />
+                </div>)
         else
-            return(<LoggedOutBar />)
+            return(
+                <div className="nav-bar-container">
+                    <LoggedOutBar />
+                </div>)
     }
 }
 

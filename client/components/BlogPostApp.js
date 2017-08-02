@@ -1,7 +1,7 @@
-import { PostListContainer, AddPostContainer } from './BlogPostList/BlogPostContainers'
+import { PostListContainer, AddPostContainer }  from './BlogPostList/BlogPostContainers'
+import { ShowSinglePostContainer }                       from './BlogPostList/ShowSinglePost'
 import { LoginContainer } from './UserAuthentication/LoginContainer'
 import { RegisterContainer } from './UserAuthentication/RegisterContainer'
-
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Component } from 'react'
@@ -25,6 +25,7 @@ class BlogPostApp extends Component {
                         <Redirect from='/login' to='/'/>
                         <Redirect from='/register' to='/'/>
                         <Route exact path='/addpost' component={AddPostContainer}/>
+                        <Route exact path='/posts/:id' component={ShowSinglePostContainer}/>
                         <Route exact path='/' component={PostListContainer}/>
                         <Redirect from='/*' to='/'/>//redirect any non-existant routes to '/'
                     </Switch>
