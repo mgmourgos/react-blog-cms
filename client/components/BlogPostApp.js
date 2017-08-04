@@ -1,49 +1,28 @@
 import { PostListContainer, AddPostContainer }  from './BlogPostList/BlogPostContainers'
-import { ShowSinglePostContainer }                       from './BlogPostList/ShowSinglePost'
+import { ShowSinglePostContainer } from './BlogPostList/ShowSinglePost'
 import { LoginContainer } from './UserAuthentication/LoginContainer'
 import { RegisterContainer } from './UserAuthentication/RegisterContainer'
-import { Switch, Route } from 'react-router-dom'
+
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Component } from 'react'
-import { Redirect } from 'react-router'
 import { withRouter } from 'react-router'
-// const BlogPostApp = () =>
-//     <div>
-//         <Switch>
-//             <Route exact path='/' component={PostListContainer}/>
-//             <Route path='/addpost' component={AddPostContainer}/>
-//             <Route path='/login' component={LoginContainer}/>
-//             <Route path='/register' component={RegisterContainer}/>
-//         </Switch>
-//     </div>
+import { PrivateRoute } from './PrivateRoute'
+
 class BlogPostApp extends Component {
-    render() {
-        if (this.props.isLoggedIn) {
-            return (
-                <div className="blog-body">
-                    <Switch>
-                        <Redirect from='/login' to='/'/>
-                        <Redirect from='/register' to='/'/>
-                        <Route exact path='/addpost' component={AddPostContainer}/>
-                        <Route exact path='/posts/:id' component={ShowSinglePostContainer}/>
-                        <Route exact path='/' component={PostListContainer}/>
-                        <Redirect from='/*' to='/'/>//redirect any non-existant routes to '/'
-                    </Switch>
-                </div>
-            )
-        } else {
-            return (
-                <div className="blog-body">
-                    <Switch>
-                        <Route exact path='/register' component={RegisterContainer}/>
-                        <Route exact path='/login' component={LoginContainer}/>
-                        <Redirect from='/addpost' to='/login'/>
-                        <Route exact path='/' component={PostListContainer}/>
-                        <Redirect from='/*' to='/'/>//redirect any non-existant routes to '/'
-                    </Switch>
-                </div>
-            )
-        }
+    render () {
+        const { isLoggedIn } = this.props
+        return <Switch>
+            {/* Routes that are no-auth-only routes */}
+            <PrivateRoute isAuth={!isLoggedIn} path='/login' redirect='/' component={LoginContainer} />
+            <PrivateRoute isAuth={!isLoggedIn} path='/register' redirect='/' component={RegisterContainer} />
+
+            {/* Routes that are auth-only routes */}
+            <PrivateRoute isAuth={isLoggedIn} path='/addpost' redirect='/login' component={AddPostContainer} />
+
+            <Route exact path='/' component={PostListContainer}/>
+            <Redirect from='/*' to='/'/>
+        </Switch>
     }
 }
 
