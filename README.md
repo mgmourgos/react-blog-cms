@@ -4,6 +4,10 @@
 
 This app allows users to read and write blog posts. To submit new posts or edit already existing posts users must register an account and log in.
 
+An example of this app can be viewed at [blog.matthewmourgos.com](http://blog.matthewmourgos.com/).
+
+This project is a work in progress.
+
 ## Stack
 
 - React - a JavaScript library for building user interfaces
